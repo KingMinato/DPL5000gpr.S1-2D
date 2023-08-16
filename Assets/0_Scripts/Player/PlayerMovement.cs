@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //JumpNRunMovement();
-        TopDownMovement();
+        JumpNRunMovement();
+        //TopDownMovement();
     }
 
     private void JumpNRunMovement()
@@ -56,5 +56,13 @@ public class PlayerMovement : MonoBehaviour
         movement = movement.normalized;
 
         rb.velocity = movement * moveSpeed;
+    }
+
+    public void OnMouseDrag()
+    {
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(newPos.x, newPos.y, 0f);
+
+        rb.velocity = Vector2.zero;
     }
 }
